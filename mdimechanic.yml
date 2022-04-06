@@ -1,13 +1,23 @@
-code_name: 'UNKNOWN'
+code_name: 'MDI Library'
 docker:
-  image_name: 'mdiengine'
+  image_name: 'mdi/mdi_library'
 
   build_image:
-    - echo "Insert commands to build the environment for the engine here"
-    - echo "This will often include using apt-get or pip to install dependencies"
+    - apt-get update
+    - apt-get install -y git vim
+    - pip install cmake
+    - pip install mpi4py
 
   build_engine:
-    - echo "Insert commands to build your engine code here"
+    - |
+      if [ ! -d "build/MDI_Library" ]; then
+        git clone https://github.com/MolSSI-MDI/MDI_Library.git build/MDI_Library
+      fi
+    - rm -rf build/MDI_Library/build
+    - mkdir -p build/MDI_Library/build
+    - cd build/MDI_Library/build
+    - cmake -Dtest_codes=ON ..
+    - make -j 1
 
   validate_engine:
     - echo "Insert code that will confirm that your code has been built successfully"
