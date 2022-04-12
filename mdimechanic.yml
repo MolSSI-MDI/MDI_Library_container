@@ -6,7 +6,9 @@ docker:
     - apt-get update
     - apt-get install -y git vim
     - pip install cmake
+    - pip install numpy
     - pip install mpi4py
+    - pip install pytest
 
   build_engine:
     - |
@@ -28,3 +30,13 @@ engine_tests:
   script:
     - echo "Insert commands to run an example calculation here"
     - exit 1
+
+
+run_scripts:
+  test:
+    containers:
+      container1:
+        image: 'mdi/mdi_library'
+        script:
+          - cd build/MDI_Library/tests
+          - pytest -vv .
