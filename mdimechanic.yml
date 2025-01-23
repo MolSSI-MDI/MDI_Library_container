@@ -36,7 +36,7 @@ run_scripts:
   test:
     containers:
       container1:
-        image: 'mdi/mdi_library'
+        image: 'mdi/mdi_library:dev'
         script:
           - cd build/MDI_Library/tests
           - pytest -vv .
