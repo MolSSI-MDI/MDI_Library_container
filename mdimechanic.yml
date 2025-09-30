@@ -9,6 +9,8 @@ docker:
     - pip install numpy
     - pip install mpi4py
     - pip install pytest
+    - pip install pydata-sphinx-theme sphinx-design sphinx-copybutton myst-parser sphinx-tags
+    - pip install pyyaml
 
   build_engine:
     - |
